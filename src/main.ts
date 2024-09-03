@@ -1,36 +1,25 @@
-let fullname = "Federico"
+//Funciones
 
-let address:string = 'El Salvador, San Salvador'
-
-let edad:number = 24
-
-let alive:boolean = true
-let asistencia:boolean = false
-
-let today:Date = new Date()
-
-//arrays 
-let language:string[] = ['PHP', 'JS', 'Go']
-let years:Array<number> = [2020,2021,2022,2023]
-
-//Tuplas
-const tuplas:[string, boolean, number] = ['Hola', true, 2024]
-
-//Enum
-
-enum Roles {
-    Manager,
-    Editor,
-    Viewer
+const greeting = (fullname?:string) :string  => {
+    if(fullname){
+    return `Hola Buen dia ${fullname}`
+    } else {
+        return 'Hola Buen Dia'
+    }
 }
 
-let userRole:Roles = Roles.Manager
+console.log(greeting('Fernando'))
 
+function goodbye(fullname: string = 'Ever'):string {
+    return `Adios ${fullname}`
+}
 
+console.log(goodbye())
+console.log(greeting())
 
-/* console.log(fullname)
-console.log(address)
-console.log(edad)
-console.log(alive)
-console.log(asistencia)
-console.log(today) */
+const sum = (num1:number, num2:number) => {
+    let sum = num1 + num2
+    console.log(`El resultado de la suma es ${sum}`)
+}
+
+sum(2,4)
