@@ -1,40 +1,63 @@
-interface IUsuario{
-    nombre: string
-    apellido: string
-    animaFav: Array<string>
-    edad?: number
-    readonly vivo:boolean
-    estatura:number
+import axios from 'axios'
+// get characters
+
+export interface IResponse {
+    info:    Info;
+    results: Result[];
 }
 
-let usuario:IUsuario = {
-    nombre: 'Carlos Rodrigo',
-    apellido: 'Portillo',
-    animaFav: ['Perros', 'Gatos', 'Leones'],
-    edad: 23,
-    vivo: true,
-    estatura: 2.00
+export interface Info {
+    count: number;
+    pages: number;
+    next:  string;
+    prev:  null;
 }
 
-console.log(usuario.nombre)
-
-enum Genero{
-    Femenino = 'F',
-    Masculino = 'M',
+export interface Result {
+    id:       number;
+    name:     string;
+    status:   Status;
+    species:  Species;
+    type:     string;
+    gender:   Gender;
+    origin:   Location;
+    location: Location;
+    image:    string;
+    episode:  string[];
+    url:      string;
+    created:  Date;
 }
 
-type Alumno = {
-    nombre: string
-    genero: Genero
-    edad: number
-    activo: boolean
+export enum Gender {
+    Female = "Female",
+    Male = "Male",
+    Unknown = "unknown",
 }
 
-let alumno: Alumno = {
-    nombre: 'Gisela Valladares',
-    genero: Genero.Femenino,
-    edad: 19,
-    activo: true
+export interface Location {
+    name: string;
+    url:  string;
 }
 
-console.log(alumno.genero)
+export enum Species {
+    Alien = "Alien",
+    Human = "Human",
+}
+
+export enum Status {
+    Alive = "Alive",
+    Dead = "Dead",
+    Unknown = "unknown",
+}
+
+const getCharacters = async():Promise<IResponse | never> => {
+    try {
+        const response:IResponse = await axios.get(`https://rickandmortyapi.com/api/character`);
+        console.log(response.data)
+        return response.data
+    } catch (error) {
+        throw new Error('Error API Error')
+    }
+}
+
+getCharacters()
