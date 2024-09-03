@@ -1,25 +1,40 @@
-//Funciones
-
-const greeting = (fullname?:string) :string  => {
-    if(fullname){
-    return `Hola Buen dia ${fullname}`
-    } else {
-        return 'Hola Buen Dia'
-    }
+interface IUsuario{
+    nombre: string
+    apellido: string
+    animaFav: Array<string>
+    edad?: number
+    readonly vivo:boolean
+    estatura:number
 }
 
-console.log(greeting('Fernando'))
-
-function goodbye(fullname: string = 'Ever'):string {
-    return `Adios ${fullname}`
+let usuario:IUsuario = {
+    nombre: 'Carlos Rodrigo',
+    apellido: 'Portillo',
+    animaFav: ['Perros', 'Gatos', 'Leones'],
+    edad: 23,
+    vivo: true,
+    estatura: 2.00
 }
 
-console.log(goodbye())
-console.log(greeting())
+console.log(usuario.nombre)
 
-const sum = (num1:number, num2:number) => {
-    let sum = num1 + num2
-    console.log(`El resultado de la suma es ${sum}`)
+enum Genero{
+    Femenino = 'F',
+    Masculino = 'M',
 }
 
-sum(2,4)
+type Alumno = {
+    nombre: string
+    genero: Genero
+    edad: number
+    activo: boolean
+}
+
+let alumno: Alumno = {
+    nombre: 'Gisela Valladares',
+    genero: Genero.Femenino,
+    edad: 19,
+    activo: true
+}
+
+console.log(alumno.genero)
