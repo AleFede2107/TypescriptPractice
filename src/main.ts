@@ -50,9 +50,9 @@ export enum Status {
     Unknown = "unknown",
 }
 
-const getCharacters = async():Promise<IResponse | never> => {
+const getCharactersAxios = async():Promise<IResponse | never> => {
     try {
-        const response:IResponse = await axios.get(`https://rickandmortyapi.com/api/character`);
+        const response = await axios.get<IResponse>(`https://rickandmortyapi.com/api/character`);
         console.log(response.data)
         return response.data
     } catch (error) {
@@ -60,4 +60,35 @@ const getCharacters = async():Promise<IResponse | never> => {
     }
 }
 
-getCharacters()
+getCharactersAxios()
+
+
+const getCharactersFetch = async() => {
+    try {
+        const response = await fetch('https://rickandmortyapi.com/api/character')
+        const data:IResponse = await response.json()
+        return data
+    } catch (error) {
+        throw new Error('Error API ERROR')       
+    }
+}
+
+const renderCharacters = async() => {
+    const container = document.getElementById('app')
+    const data  = await getCharactersFetch()
+    if(data){
+        data.results.map(result => {
+            const div = document.createElement('div')
+            div.innerHTML = `
+                <h1> ${result.name}</h1>
+            `
+            container?.appendChild(div)
+        })
+    } else{
+        container!.innerHTML = `
+            <h1>TODO SE FUE A LA FREGADA T.T</h1>
+        `
+    }
+}
+
+renderCharacters();
