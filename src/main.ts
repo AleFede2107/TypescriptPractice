@@ -1,19 +1,32 @@
-const container:HTMLElement | null = document.getElementById('app')
+// clases que encapsulan la logica de un objeto
+class Hombre{
+    //Atributos
+    nombre:string
+    dui: string
+    edad: number
+    altura: number
 
-const button:HTMLButtonElement = document.createElement('button')
+    //metodos
+    public saludar(){
+        console.log('El sujeto de pruebas ha saludado')
+    }
 
-button.textContent = 'Lanzar notificacion'
-container!.appendChild(button)
-
-const notiHandler = async() => {
-    if(Notification.permission === 'granted'){
-        new Notification('Hi from my typescript Website')
-    }else {
-        const permission = await Notification.requestPermission()
-        if(permission === 'granted'){
-            new Notification('Gracias por permitirme entrar en tu vida')
-        }
+    public trabajar(){
+        console.log('El sujeto de pruebas esta trabajando')
     }
 }
 
-button.addEventListener('click', ():void => {console.log('notification'); notiHandler() })
+class Mujer extends Hombre{
+    public maquillarse(){
+        console.log('La sujeto se esta maquillando')
+    }
+}
+
+class Hijo extends Hombre{
+    public serFeliz(){
+        console.log('El sujeto es feliz')
+    }
+}
+const mujer = new Mujer
+
+mujer.maquillarse()
