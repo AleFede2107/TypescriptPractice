@@ -1,32 +1,40 @@
-// clases que encapsulan la logica de un objeto
-class Hombre{
-    //Atributos
-    nombre:string
-    dui: string
+/* class Perro{
+    raza: string
     edad: number
-    altura: number
+    color: string
 
-    //metodos
-    public saludar(){
-        console.log('El sujeto de pruebas ha saludado')
+    public ladrar():void {
+        console.log('El perro ha ladrado')
     }
 
-    public trabajar(){
-        console.log('El sujeto de pruebas esta trabajando')
-    }
-}
-
-class Mujer extends Hombre{
-    public maquillarse(){
-        console.log('La sujeto se esta maquillando')
+    public comer(name:string):string {
+        return `${name} ha ido a comer`
     }
 }
 
-class Hijo extends Hombre{
-    public serFeliz(){
-        console.log('El sujeto es feliz')
+const perro = new Perro()
+
+console.log(perro.comer('Fido')) */
+
+class Persona{
+    name: string
+    lastname: string
+    bootcamp: string
+
+    //Constructor
+    constructor(name:string, lastname:string, bootcamp:string){
+        this.name = name;
+        this.lastname = lastname;
+        this.bootcamp = bootcamp;
+    }
+
+    public hablar(){
+        console.log(`${this.name} ha hablado`)
     }
 }
-const mujer = new Mujer
 
-mujer.maquillarse()
+const persona = new Persona('Federico', 'Alegria', 'FSJ=24')
+console.log(persona.hablar())
+
+const persona2 = new Persona('Gisela', 'Valladares', 'FSJ=24')
+console.log(persona2.hablar())
